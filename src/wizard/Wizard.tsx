@@ -87,7 +87,7 @@ export const Wizard = () => {
             Select your intents. You can select from the pretrained intents or
             create your own.
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="caption">
             In order to understand what the user wants, our AI is trained to
             recognize different intents. For each intent the AI gets a list of
             user messages (we call them expressions) as training data to learn
