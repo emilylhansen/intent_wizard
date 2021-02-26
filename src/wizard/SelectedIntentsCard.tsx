@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 type Props = {
   selectedItemsById: Record<IntentId, Intent>;
   onRemoveItem: (id: IntentId) => void;
-  onSelectItem: (id: IntentId) => void;
+  onFocusItem: (id: IntentId) => void;
   focusedItemId: O.Option<IntentId>;
 };
 
@@ -71,7 +71,7 @@ export const SelectedIntentsCard = (props: Props) => {
                   key={k}
                   intent={v}
                   onRemoveItem={props.onRemoveItem}
-                  onSelectItem={props.onSelectItem}
+                  onFocusItem={props.onFocusItem}
                   isFocused={isFocused}
                 />
               );

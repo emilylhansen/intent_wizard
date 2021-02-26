@@ -43,9 +43,11 @@ const Footer = styled.div`
 
 //#region hooks start
 const useWizard = () => {
+  /** A record of Intent items that are checked in the Pretrained Intents card */
   const [selectedItemsById, setSelectedItemsById] = React.useState<
     Record<IntentId, Intent>
   >(R.empty);
+  /** the intent id that is click in the Selected Intents card */
   const [focusedItemId, setFocusedItemId] = React.useState<O.Option<IntentId>>(
     O.none
   );
@@ -63,13 +65,13 @@ const useWizard = () => {
     setFocusedItemId(O.none);
   };
 
-  const onSelectItem = (id: IntentId) => setFocusedItemId(O.some(id));
+  const onFocusItem = (id: IntentId) => setFocusedItemId(O.some(id));
 
   return {
     selectedItemsById,
     onAddItem,
     onRemoveItem,
-    onSelectItem,
+    onFocusItem,
     focusedItemId,
   };
 };
@@ -98,6 +100,7 @@ export const Wizard = () => {
       </Header>
       <IntentsCards>
         <IntentsCard
+          /** Ideally I would not cast, but for the sake of animosity of the data I will in this case */
           intents={(intents as unknown) as ServerBlob}
           selectedItemsById={state.selectedItemsById}
           onAddItem={state.onAddItem}
@@ -107,7 +110,7 @@ export const Wizard = () => {
         <SelectedIntentsCard
           selectedItemsById={state.selectedItemsById}
           onRemoveItem={state.onRemoveItem}
-          onSelectItem={state.onSelectItem}
+          onFocusItem={state.onFocusItem}
           focusedItemId={state.focusedItemId}
         />
       </IntentsCards>

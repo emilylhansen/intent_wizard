@@ -85,11 +85,16 @@ const useIntentItem = (props: Props) => {
   const classes = useStyles();
 
   React.useEffect(() => {
+    /**
+     * scroll to the item in the Pretrained Intents list when the corresponding
+     * item in the Selected Intents list is clicked
+     */
     if (props.isFocused && ref.current !== null) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [props.isFocused, ref.current]);
 
+  /** render the remaining expressions not given in the sample data */
   const givenExpressionsCount = props.intent.trainingData.expressions.length;
   const missingExpressionsCount =
     props.intent.trainingData.expressionCount - givenExpressionsCount;
@@ -149,6 +154,7 @@ export const IntentItem = (props: Props) => {
             props.intent.trainingData.expressions,
             A.map((e) => <ExpressionItem key={e.id} expression={e} />)
           )}
+          {/** render the remaining expressions not given in the sample data */}
           {pipe(
             A.range(state.givenExpressionsCount, state.missingExpressionsCount),
             A.map((i) => (

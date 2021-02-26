@@ -18,14 +18,14 @@ const SelectedIntentItemWrapper = styled.div<{ isFocused: boolean }>`
 type Props = {
   onRemoveItem: (id: IntentId) => void;
   intent: Intent;
-  onSelectItem: (id: IntentId) => void;
+  onFocusItem: (id: IntentId) => void;
   isFocused: boolean;
 };
 
 export const SelectedIntentItem = (props: Props) => (
   <SelectedIntentItemWrapper
     isFocused={props.isFocused}
-    onClick={() => props.onSelectItem(props.intent.id)}
+    onClick={() => props.onFocusItem(props.intent.id)}
   >
     <ListItem key={props.intent.id}>
       <ListItemText primary={props.intent.name} />
